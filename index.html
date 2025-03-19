@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tick tack toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-page show">
+        <div>Tick Tack toe</div>
+        <input type="number" id="board-size" placeholder="Board size" min="3" max="8" >
+        <div id="error"></div>
+        <button id="startGameButton">Start Game</button>
+    </div>
+    <div class="loading">
+        Loading...
+    </div>
+    <div class="board" id="board">
+    </div>
+    <div class="winning-message">
+        <div data-winning-message-text></div>
+        <button id="restartButton">Restart</button>
+        <button id="homePageButton">Home Page</button>
+    </div>
+    <button id="themeButton">Dark</button>
+</body>
+<script src="scriptOops.js"></script>
+<script type="text/javascript" src="themeToggle.js"></script>
+</html>
