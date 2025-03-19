@@ -1,0 +1,191 @@
+*{
+    box-sizing: border-box;
+}
+:root{
+    --cell-size: calc(min(100vw, 100vh)/10);
+    --mark-size: calc(var(--cell-size)*.9);
+    --primary-color:  rgba(0, 0, 0, .9);
+    --secondary-color: white;
+    --tertiary-color: black;
+    --text-primary-color: white;
+    --text-secondary-color: black;
+    --hovered-color: lightgray;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding:0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--primary-color);
+    cursor:context-menu;
+}
+.welcome-page{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-primary-color);
+    font-size: 5rem;
+}
+.welcome-page.show{
+    display: flex;
+}
+#themeButton{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+#error{
+    color: red;
+    font-size: 20px;
+}
+
+.welcome-page input{
+    font-size: 1.5rem;
+    padding: 10px 2px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    width: 50%;
+    height:auto;
+    text-align: center;   
+    background-color: var(--tertiary-color);
+    color: var(--text-primary-color);
+}
+.welcome-page input::placeholder{
+    text-align: center;
+    color: var(--text-primary-color);
+}
+
+.winning-message{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary-color);
+    font-size: 5rem;
+}
+.winning-message.show{
+    display: flex;
+}
+button{
+    font-size: 2.5rem;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: var(--text-secondary-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: var(--tertiary-color);
+    color: var(--text-primary-color);
+    animation: bouncingButton .5s ease-in-out 0s infinite alternate-reverse;
+}
+@keyframes bouncingButton {
+    0%{ transform:  rotate(-1deg);}
+    50%{ transform:  rotate(1deg);}
+    100%{ transform:  rotate(0deg);}
+
+}
+.loading{
+    display: none;
+    font-size: 5rem;
+    color: var(--text-primary-color);
+}
+.loading.show{
+    display: initial;
+}
+.board{
+    display:none;
+}
+.board.show{
+    display: initial;
+}
+.row{
+    display: flex;
+}
+.row:first-child .cell{
+    border-top: none;
+}
+.row:last-child .cell{
+    border-bottom: none;
+}
+.row .cell:first-child{
+    border-left: none;
+}
+.row .cell:last-child{
+    border-right: none;
+}
+.cell{
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell.x::before, .cell.x::after{
+    position: absolute;
+    content: '';
+    width: calc(var(--mark-size)* .15);
+    height: var(--mark-size);
+    background-color: var(--secondary-color);
+}
+.cell.x::before{
+    transform: rotate(45deg);
+}
+.cell.x::after{
+    transform: rotate(-45deg);
+}
+.cell.o::before, .cell.o::after{
+    position: absolute;
+    content: '';
+    width: var(--mark-size);
+    height: var(--mark-size);
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+}
+.cell.o::after{
+    width: calc(var(--mark-size)*.7);
+    height: calc(var(--mark-size)*.7);
+    background-color: var(--primary-color);
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after{
+    position: absolute;
+    content: '';
+    width: calc(var(--mark-size)* .15);
+    height: var(--mark-size);
+    background-color: var(--hovered-color);
+}
+.board.x .cell:not(.x):not(.o):hover::before{
+    transform: rotate(45deg);
+}
+.board.x .cell:not(.x):not(.o):hover::after{
+    transform: rotate(-45deg);
+}
+.board.o .cell:not(.x):not(.o):hover::before,
+ .board.o .cell:not(.x):not(.o):hover::after{
+    position: absolute;
+    content: '';
+    width: var(--mark-size);
+    height: var(--mark-size);
+    border-radius: 50%;
+    background-color: var(--hovered-color); 
+ }
+ .board.o .cell:not(.x):not(.o):hover::after{
+    width: calc(var(--mark-size)*.7);
+    height: calc(var(--mark-size)*.7);
+    background-color: var(--primary-color);
+}
